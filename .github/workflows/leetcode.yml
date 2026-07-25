@@ -1,0 +1,16 @@
+name: Sync LeetCode History
+
+on:
+  workflow_dispatch: # Allows you to trigger this manually at any time
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync history
+        uses: joshcai/leetcode-sync@v1.7.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: leetcode-history

@@ -4,13 +4,20 @@
  */
 var lengthOfLastWord = function(s) {
     let n = s.length - 1;
-    let len = 0;
-    while(n>= 0 && s[n] === " "){
-        n--;
+    let count = 0;
+    let flag = 0;
+    while(n>=0){
+        if(flag === 1 && s[n] === " "){
+            return count;
+        }
+        else if(s[n] === " "){
+            n--;
+        }
+        else{
+            count++;
+            n--;
+            flag = 1;
+        }
     }
-    while(n >= 0 && s[n] != " "){
-        len++;
-        n--;
-    }
-    return len;
+    return count;
 };

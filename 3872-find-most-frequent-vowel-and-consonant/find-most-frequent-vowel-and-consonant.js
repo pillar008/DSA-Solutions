@@ -16,16 +16,17 @@ var maxFreqSum = function(s) {
     let check = ["a","e","i","o","u"];
     let maxVowels = 0;
     let maxConsonant = 0;
-    for(let i = 0;i<s.length;i++){
-        if(check.includes(s[i])){
-            if(map[s[i]]>maxVowels){
-                maxVowels = map[s[i]];
+    let mapKeys = Object.keys(map)
+    for(let i = 0;i<mapKeys.length;i++){
+        if(check.includes(mapKeys[i])){
+            if(map[mapKeys[i]]>maxVowels){
+                maxVowels = map[mapKeys[i]];
             }
         } 
         
         else {
-            if(map[s[i]] > maxConsonant)
-                maxConsonant = map[s[i]];
+            if(map[mapKeys[i]] > maxConsonant)
+                maxConsonant = map[mapKeys[i]];
         }
     }
     return maxVowels + maxConsonant;

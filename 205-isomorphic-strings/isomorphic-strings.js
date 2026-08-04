@@ -4,17 +4,18 @@
  * @return {boolean}
  */
 var isIsomorphic = function(s, t) {
-    let m1={};
-    let m2={};
+    let mapStoT = {};
+    let mapTtoS = {};
 
-    for(let i = 0;i<s.length;i++){
-        if (m1[s[i]] === undefined && m2[t[i]] === undefined){
-            m1[s[i]] = t[i];
-            m2[t[i]] = s[i];
+    for(let i =0;i<s.length;i++){
+        if(!mapStoT[s[i]] && !mapTtoS[t[i]]){
+            mapStoT[s[i]] = t[i];
+            mapTtoS[t[i]] = s[i];
         }
-        else if(m1[s[i]] != t[i]){
+        else if(mapStoT[s[i]] != t[i]){
             return false;
         }
     }
+
     return true;
 };

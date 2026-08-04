@@ -4,30 +4,26 @@
  * @return {boolean}
  */
 var isAnagram = function(s, t) {
-    let count = {};
-
-    if(s.length != t.length) return false;
-
-    for(let i = 0 ; i < s.length;i++){
-        let curr = s[i];
-
-        if(count[curr] === undefined){
-            count[curr] = 1;
-        }
-        else{
-            count[curr]++;
-        }
+    let ledger = new Map();
+    for(let i=0;i<s.length;i++){
+        let char = s[i];
+        ledger.set(char,(ledger.get(char)||0)+1);
     }
-
-    for(let j=0;j<t.length;j++){
-        let curr = t[j];
-
-        if(count[curr] === undefined || count[curr]===0){
+    for(let i = 0;i<t.length;i++){
+        let target = t[i];
+        
+        if(!ledger.has(target)){
             return false;
         }
+
+        let count = ledger.get(target) - 1;
+
+        if(count === 0){
+            ledger.delete(target);
+        }
         else{
-            count[curr]--;
+            ledger.set(target,count);
         }
     }
-    return true;
+    return ledger.size === 0;
 };

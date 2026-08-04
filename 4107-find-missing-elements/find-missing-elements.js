@@ -15,14 +15,14 @@ var findMissingElements = function(nums) {
         }
     }
 
-    let idx = 0;
+    const numSet = new Set(nums);
+
     let arr = [];
     for(let i = min;i<=max;i++){
-        arr[idx] = i;
-        idx++;
+        arr.push(i);
     }
 
-    arr = arr.filter(item => !nums.includes(item));
+    arr = arr.filter(item => !numSet.has(item));
 
     return arr;
 };

@@ -1,29 +1,29 @@
 /**
- * @param {string} s
- * @return {boolean}
- */
+ * @param {string} s
+ * @return {boolean}
+ */
 var isValid = function(s) {
-    let stack = [];
-    let i = 0;
+    let stack = [];
 
-    while(i< s.length){
-        if(stack[stack.length-1] === "(" && s[i] ===")"){
-            stack.pop();
-            i++;
-        }
-        else if(stack[stack.length-1] === "{" && s[i] ==="}"){
-            stack.pop();
-            i++;
-        }
-        else if(stack[stack.length-1] === "[" && s[i] ==="]"){
-            stack.pop();
-            i++;
-        }
-        else{
-            stack.push(s[i]);
-            i++;
-        }
-    }
+    let map = {
+        "{" : "}",
+        "[" : "]",
+        "(" : ")"
+    }
 
-    return stack.length === 0;
+    for(let i = 0;i<s.length;i++){
+        // if(s[i] === "(" || s[i] === "[" || s[i] === "{"){
+        if(map[s[i]]){
+            stack.push(s[i]);
+        }
+            // if(!top || (top === "(" && s[i] != ")") || (top === "{" && s[i] != "}") || (top === "[" && s[i] != "]")){
+        else{
+            let top = stack.pop();
+            if(!top || s[i] != map[top]){    
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
 };

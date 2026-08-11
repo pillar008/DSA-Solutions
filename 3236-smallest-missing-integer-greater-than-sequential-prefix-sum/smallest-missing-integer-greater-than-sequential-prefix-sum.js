@@ -3,6 +3,7 @@
  * @return {number}
  */
 var missingInteger = function(nums) {
+    let mySet = new Set(nums);
     let sum = nums[0];
     
     for(let i=0;i<nums.length;i++){
@@ -14,7 +15,7 @@ var missingInteger = function(nums) {
         }
     }
     while(true){
-        if(nums.includes(sum)){
+        if(mySet.has(sum)){
             sum++;
         }
         else{

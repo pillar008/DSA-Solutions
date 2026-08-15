@@ -1,7 +1,6 @@
 
 var MinStack = function() {
     this.s1 = [];
-    this.s2 = [];    
 };
 
 /** 
@@ -9,16 +8,13 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(value) {
-    this.s1.push(value);
-
-    if(this.s2.length === 0){
-        this.s2.push(value);
-    }
-    else if(value <= this.s2[this.s2.length-1]){
-        this.s2.push(value);
+    if(this.s1.length === 0){
+        this.s1.push([value,value]);
     }
     else{
-        this.s2.push(this.s2[this.s2.length-1]);
+        let minVal = Math.min(value, this.s1[this.s1.length-1][1]);
+
+        this.s1.push([value,minVal]);
     }
 };
 
@@ -27,7 +23,6 @@ MinStack.prototype.push = function(value) {
  */
 MinStack.prototype.pop = function() {
     this.s1.pop();
-    this.s2.pop();
 
 };
 
@@ -35,14 +30,14 @@ MinStack.prototype.pop = function() {
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.s1[this.s1.length-1];
+    return this.s1[this.s1.length-1][0];   //here we are returning the top of 0 ie the current top of the stack
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.s2[this.s2.length-1];
+    return this.s1[this.s1.length-1][1];  //here we are returning the top of 1 ie the sorted one
 };
 
 /** 
@@ -52,4 +47,12 @@ MinStack.prototype.getMin = function() {
  * obj.pop()
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
+ */
+
+/**     Visulaising the thing we did
+          |   6    |    5    |  <---- Top of the stack
+          |   8    |    5    |
+          |   9    |    5    |
+          |   5    |    5    |
+          |___6____|____6____|
  */

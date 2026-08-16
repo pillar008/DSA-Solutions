@@ -3,27 +3,22 @@
  * @return {string}
  */
 var removeOuterParentheses = function (s) {
-    let stack = [];
+    let level = 0
     let ans = [];
-    let length = s.length;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < s.length; i++) {
         let pop = s[i];
-
+        
         if (pop === "(") {
-            if (stack.length >= 1) {
-                ans.push(pop);
-            }
-            stack.push(pop);
+            ++level;
+            ans += ((level > 1) ? pop : "");
         }
         else {
-            stack.pop();
-            if (stack.length >= 1) {
-                ans.push(s[i]);
-            }
+            ans += ((level>1) ? pop : "");
+            --level;
         }
 
     }
 
-    return ans.join("");
+    return ans;
 };

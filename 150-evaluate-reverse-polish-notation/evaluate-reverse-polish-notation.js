@@ -10,7 +10,7 @@ var evalRPN = function(tokens) {
         if(mySet.has(tokens[i])){
             let var1= stack.pop();
             let var2= stack.pop();
-            let result = new Function(`return ${var2} ${tokens[i]} ${var1}`)();
+            let result = eval(`${var2} ${tokens[i]} ${var1}`);
             stack.push(Math.trunc(result));
         }
         else{

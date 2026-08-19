@@ -11,7 +11,6 @@ public:
 
             if(!stack.empty() && temperatures[stack.back()] >temperatures[i]){
                 ans[i] = stack.back() - i;
-                stack.push_back(i);
             }
             stack.push_back(i);
         }

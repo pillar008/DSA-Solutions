@@ -7,22 +7,17 @@ public:
         int low = 1;
         int high = n;
 
-            if(n==1){
-                return 1;
-            }
-        while(low <= high){
-            int mid = low + (high-low)/2;
+        while (low<high){
+            int mid = low + (high - low)/2;
 
-            if(isBadVersion(mid) == true && isBadVersion(mid-1) == false){
-                return mid;
-            }
-            else if(isBadVersion(mid) == true){
-                high = mid-1;
+            if(isBadVersion(mid)){
+                high = mid;
             }
             else{
-                low = mid+1;
+                low = mid +1;
             }
         }
-        return 0;
+
+        return high;
     }
 };

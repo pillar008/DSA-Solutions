@@ -1,20 +1,19 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
-        unordered_map <int,int> money;
+       int n = nums.size();
 
-        int n = nums.size();
+       if(n==1) return nums[0];
 
-        if (n == 0) return 0;
-        if (n == 1) return nums[0];
+       int first = nums[0];
+       int second = max(nums[0],nums[1]);
 
-        money[0] = nums[0];
-        money[1] = max(nums[0],nums[1]);
+       for(int i =2; i <n;i++){
+            int temp_first = first;
+            first = max(first,second);
+            second = max(second,nums[i] + temp_first);
+       }
 
-        for(int i=2;i<n;i++){
-            money[i] = max(money[i-1],(nums[i]+money[i-2]));
-        }
-
-        return money[n-1];
+       return max(first,second);
     }
 };

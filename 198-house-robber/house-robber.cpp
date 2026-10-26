@@ -10,7 +10,7 @@ public:
 
        for(int i =2; i <n;i++){
             int temp_first = first;
-            first = max(first,second);
+            first = second;
             second = max(second,nums[i] + temp_first);
        }
 

@@ -16,7 +16,8 @@ public:
                 }
             }
 
-            memo.insert_or_assign(remAmount, minCoin == 1e9 ? -1 : minCoin);
+            // memo.insert_or_assign(remAmount, minCoin == 1e9 ? -1 : minCoin);
+            memo[remAmount] = (minCoin == 1e9 ? -1 : minCoin);
             return memo[remAmount];
         }
 

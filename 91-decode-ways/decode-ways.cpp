@@ -30,5 +30,8 @@ public:
         return ans;
     }
 
-    int numDecodings(string s) { return func(s); }
+    int numDecodings(string s) {
+        dp.clear();
+         return func(s); 
+         }
 };
